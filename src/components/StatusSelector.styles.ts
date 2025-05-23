@@ -19,7 +19,7 @@ export const StatusSelectorStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.silver,
     backgroundColor: Colors.primaryInputBgcolor,
-    width: scale(92),
+    minWidth: scale(80),
   },
   statusButtonActive: {
     backgroundColor: Colors.primaryBgColor,
@@ -27,7 +27,7 @@ export const StatusSelectorStyles = StyleSheet.create({
   },
   statusText: {
     color: Colors.primaryTextColor,
-    fontSize: moderateScale(11),
+    fontSize: moderateScale(9.5),
     fontWeight: "500",
   },
   statusTextActive: {
