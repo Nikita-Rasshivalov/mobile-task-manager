@@ -10,7 +10,7 @@
     "splash": {
       "image": "./src/assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#888888 "
+      "backgroundColor": "#888888"
     },
     "ios": {
       "supportsTablet": true
@@ -18,7 +18,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
-        "backgroundColor": "#888888 "
+        "backgroundColor": "#888888"
       },
       "edgeToEdgeEnabled": true,
       "package": "com.anonymous.taskmanager"
