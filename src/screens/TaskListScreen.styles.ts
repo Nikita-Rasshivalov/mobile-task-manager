@@ -11,7 +11,7 @@ export const TaskListScreenStyles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 16,
-    paddingTop: 4,
+    paddingTop: 0,
     paddingBottom: 8,
   },
   addIcon: {

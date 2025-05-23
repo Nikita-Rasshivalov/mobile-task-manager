@@ -1,23 +1,25 @@
 import { StyleSheet } from "react-native";
 import { Colors } from "../constants";
+import { scale, verticalScale, moderateScale } from "react-native-size-matters";
 
 export const StatusSelectorStyles = StyleSheet.create({
   label: {
     color: Colors.primaryTextColor,
-    fontSize: 18,
+    fontSize: moderateScale(18),
     fontWeight: "600",
-    marginBottom: 8,
+    marginBottom: verticalScale(8),
   },
   statusContainer: {
     flexDirection: "row",
   },
   statusButton: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 8,
+    paddingHorizontal: scale(16),
+    paddingVertical: verticalScale(8),
+    borderRadius: scale(8),
     borderWidth: 1,
     borderColor: Colors.silver,
     backgroundColor: Colors.primaryInputBgcolor,
+    width: scale(92),
   },
   statusButtonActive: {
     backgroundColor: Colors.primaryBgColor,
@@ -25,12 +27,12 @@ export const StatusSelectorStyles = StyleSheet.create({
   },
   statusText: {
     color: Colors.primaryTextColor,
-    fontSize: 16,
+    fontSize: moderateScale(11),
     fontWeight: "500",
   },
   statusTextActive: {
     color: Colors.secondaryTextColor,
-    fontSize: 16,
+    fontSize: moderateScale(11),
     fontWeight: "600",
   },
 });

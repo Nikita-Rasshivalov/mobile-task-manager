@@ -7,7 +7,9 @@ export const TaskDetailScreenStyles = StyleSheet.create({
     backgroundColor: Colors.primaryBgColor,
   },
   scrollContent: {
-    padding: 18,
+    paddingTop: 0,
+    paddingBottom: 12,
+    paddingHorizontal: 18,
     flexGrow: 1,
   },
   card: {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
+import { View, ScrollView } from "react-native";
 import { useRoute, useNavigation, RouteProp } from "@react-navigation/native";
 import { TaskStatus, RootStackParamList, Address } from "../types";
 import { TaskDetailScreenStyles as styles } from "./TaskDetailScreen.styles";
@@ -10,10 +10,8 @@ import { DateTimePickerField } from "../components/DateTimePickerField";
 import AddressInputModal from "../components/AddressInputModal";
 import { StatusSelector } from "../components/StatusSelector";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Button, Card } from "react-native-paper";
+import { Card } from "react-native-paper";
 import { LabeledInput } from "../components/LabeledInput";
-import { SilverGradient } from "../components/SilverGradient";
-import { Colors } from "../constants";
 import { GradientButton } from "../components/GradientButton";
 
 type TaskDetailScreenRouteProp = RouteProp<RootStackParamList, "TaskDetail">;
@@ -100,80 +98,74 @@ const TaskDetailScreen = () => {
 
   return (
     <SafeAreaView style={styles.safeContainer}>
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-      >
-        <ScrollView contentContainerStyle={styles.scrollContent}>
-          <Card style={styles.card}>
-            <Card.Content>
-              <LabeledInput
-                label="Title"
-                value={title}
-                onChangeText={(text) => {
-                  setTitle(text);
-                  if (errors.title)
-                    setErrors((prev) => ({ ...prev, title: undefined }));
-                }}
-                placeholder="Enter title"
-                errorMessage={errors.title}
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Card style={styles.card}>
+          <Card.Content style={{ marginTop: -15 }}>
+            <LabeledInput
+              label="Title"
+              value={title}
+              onChangeText={(text) => {
+                setTitle(text);
+                if (errors.title)
+                  setErrors((prev) => ({ ...prev, title: undefined }));
+              }}
+              placeholder="Enter title"
+            />
+
+            <LabeledInput
+              label="Description"
+              value={description}
+              onChangeText={(text) => {
+                setDescription(text);
+                if (errors.description)
+                  setErrors((prev) => ({ ...prev, description: undefined }));
+              }}
+              placeholder="Enter description"
+              errorMessage={errors.description}
+            />
+
+            <View>
+              <DateTimePickerField
+                label="Date and time"
+                date={datetime}
+                isVisible={showDate}
+                show={() => setShowDate(true)}
+                hide={() => setShowDate(false)}
+                onConfirm={setDatetime}
               />
+            </View>
 
-              <LabeledInput
-                label="Description"
-                value={description}
-                onChangeText={(text) => {
-                  setDescription(text);
-                  if (errors.description)
-                    setErrors((prev) => ({ ...prev, description: undefined }));
-                }}
-                placeholder="Enter description"
-                errorMessage={errors.description}
+            <View>
+              <AddressInputModal
+                location={location}
+                setLocation={setLocation}
               />
+            </View>
 
+            {existingTask && (
               <View>
-                <DateTimePickerField
-                  label="Date and time"
-                  date={datetime}
-                  isVisible={showDate}
-                  show={() => setShowDate(true)}
-                  hide={() => setShowDate(false)}
-                  onConfirm={setDatetime}
-                />
+                <StatusSelector status={status} setStatus={setStatus} />
               </View>
+            )}
 
-              <View>
-                <AddressInputModal
-                  location={location}
-                  setLocation={setLocation}
-                />
-              </View>
-
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <GradientButton onPress={handleSave} label="Save" />
               {existingTask && (
-                <View>
-                  <StatusSelector status={status} setStatus={setStatus} />
-                </View>
+                <GradientButton
+                  onPress={confirmDelete}
+                  label="Delete"
+                  containerStyle={{ marginTop: 10 }}
+                />
               )}
-
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <GradientButton onPress={handleSave} label="Save" />
-                {existingTask && (
-                  <GradientButton
-                    onPress={confirmDelete}
-                    label="Delete"
-                    containerStyle={{ marginTop: 10 }}
-                  />
-                )}
-              </View>
-            </Card.Content>
-          </Card>
-        </ScrollView>
-      </KeyboardAvoidingView>
+            </View>
+          </Card.Content>
+        </Card>
+      </ScrollView>
     </SafeAreaView>
   );
 };

@@ -4,6 +4,7 @@ import { Button } from "react-native-paper";
 import { SilverGradient } from "./SilverGradient";
 import { Colors } from "../constants";
 import { GradientButtonProps } from "../types";
+import { scale, moderateScale, verticalScale } from "react-native-size-matters";
 
 export function GradientButton({
   onPress,
@@ -15,11 +16,11 @@ export function GradientButton({
     <SilverGradient
       style={[
         {
-          borderRadius: 10,
+          borderRadius: scale(10),
           overflow: "hidden",
-          width: 165,
-          marginTop: 10,
-          padding: 6,
+          width: scale(135),
+          marginTop: verticalScale(10),
+          padding: scale(6),
         },
         containerStyle,
       ]}
@@ -30,7 +31,7 @@ export function GradientButton({
         style={{ backgroundColor: "transparent" }}
         labelStyle={[
           {
-            fontSize: 18,
+            fontSize: moderateScale(18),
             fontWeight: "600",
             color: Colors.primaryTextColor,
           },
